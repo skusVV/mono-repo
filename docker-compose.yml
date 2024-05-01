@@ -1,0 +1,14 @@
+version: '3'
+services:
+  backend-auth:
+    build: ./backend/auth
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend/auth:/app
+  frontend-auth:
+    build: './frontend/auth'
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/auth:/app
