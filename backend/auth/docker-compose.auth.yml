@@ -20,12 +20,5 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
 
-  frontend-auth:
-    build: './frontend/auth'
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./frontend/auth:/app
-
 volumes:
   mongo_db_volume:

@@ -1,6 +1,9 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
 import cors from 'cors';
+
+import { userRouter } from './routes/user.router';
 
 dotenv.config();
 
@@ -15,11 +18,17 @@ app.use(
   }),
 );
 
+userRouter(app);
+
 app.listen(PORT, async () => {
     console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
+
+    try {
+      await mongoose.connect(process.env.MONGODB_URI!);
+      console.log('DB Connected')
+    } catch (e) {
+      console.log(e)
+    }
 });
 
 
-app.get('/api/v1/user', (req: Request, res: Response) => {
-    return res.send({ user: 'Vitalii' });
-});

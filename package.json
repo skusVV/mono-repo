@@ -1,0 +1,22 @@
+{
+  "name": "infrastructure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "docker-compose up",
+    "dev:backend": "docker-compose -f docker-compose.backend.yml up",
+    "dev:auth:backend": "docker-compose -f ./backend/auth/docker-compose.backend.yml up"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skusVV/mono-repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skusVV/mono-repo/issues"
+  },
+  "homepage": "https://github.com/skusVV/mono-repo#readme"
+}
