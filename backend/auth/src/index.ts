@@ -24,8 +24,9 @@ app.listen(PORT, async () => {
     console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
 
     try {
+      console.log('DB Connecting....');
       await mongoose.connect(process.env.MONGODB_URI!);
-      console.log('DB Connected')
+      console.log('DB Connected');
     } catch (e) {
       console.log(e)
     }

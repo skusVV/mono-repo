@@ -1,5 +1,15 @@
 version: '3'
 services:
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_db_volume:/data/db
+    networks:
+      - app-network  
+
   backend-auth:
     build: ./backend/auth
     ports:
@@ -8,17 +18,12 @@ services:
       - ./backend/auth:/app
     depends_on:
       - mongo
-
-  mongo:
-    image: mongo
-    restart: always
-    ports:
-      - '27017:27017'
-    volumes:
-      - mongo_db_volume:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - app-network  
 
 volumes:
   mongo_db_volume:
+
+networks:
+  app-network:
+    driver: bridge  

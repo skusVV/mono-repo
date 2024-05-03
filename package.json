@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "docker-compose up",
-    "dev:backend": "docker-compose -f docker-compose.backend.yml up",
-    "dev:auth:backend": "docker-compose -f ./backend/auth/docker-compose.backend.yml up"
+    "dev:backend": "docker-compose -f docker-compose.backend.yml up"
   },
   "repository": {
     "type": "git",
