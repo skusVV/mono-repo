@@ -1,6 +1,11 @@
 import{ Request, Response, Application, } from 'express';
-import UserModel from '../schemas/user.schema';
+import R from 'ramda';
 
+import UserModel from '../schemas/user.schema';
+interface User {
+    firstName: string;
+    lastName: string;
+}
 const user = {
     firstName: 'Vitalii',
     lastName: 'S',
@@ -11,6 +16,8 @@ const user = {
     // img: 'https://avatars.githubusercontent.com/u/16208663?v=4'
 }
 
+const getUser = R.pickAll(['firstName', 'lastName']);
+
 export const userRouter = (app: Application) => {
     app.get('/api/v1/users/:id', (req: Request, res: Response) => {
         return res.send(user);
@@ -19,7 +26,7 @@ export const userRouter = (app: Application) => {
     app.get('/api/v1/users', async (req: Request, res: Response) => {
         try {
             const users = await UserModel.find();
-            return res.send(users);
+            return res.send(users.map(getUser));
         } catch(e) {
             console.log(e);
             return res.send([]);
